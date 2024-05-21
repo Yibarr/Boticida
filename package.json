@@ -1,0 +1,38 @@
+{
+  "name": "boticida",
+  "version": "0.0.1",
+  "description": "Discord bot",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "start": "node dist/bundle.js",
+    "dev": "nodemon dist/bundle.js",
+    "watch:build": "webpack --watch"
+  },
+  "author": "Yael Ibarra",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "@discord-player/extractor": "^4.4.7",
+    "bufferutil": "^4.0.8",
+    "discord-player": "^6.6.8",
+    "discord.js": "^14.15.2",
+    "ffmpeg-static": "^5.2.0",
+    "mediaplex": "^0.0.9",
+    "utf-8-validate": "^6.0.4",
+    "ytdl-core": "^4.11.5",
+    "zlib-sync": "^0.1.9"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/ws": "^8.5.10",
+    "clean-webpack-plugin": "^4.0.0",
+    "dotenv": "^16.4.5",
+    "node-loader": "^2.0.0",
+    "nodemon": "^3.1.0",
+    "ts-loader": "^9.5.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
