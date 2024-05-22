@@ -1,7 +1,12 @@
-import { Client, Events, GatewayIntentBits, Collection,  Interaction, CacheType } from 'discord.js'
-import fs from 'node:fs'
-import path from 'node:path'
-import { Command } from './@types/discord'
+import { 
+    Client,
+    Events,
+    GatewayIntentBits,
+    Collection,  
+    Interaction, 
+    CacheType 
+} from 'discord.js'
+import Commands from '../src/commands'
 
 class App {
     private client: Client
@@ -24,34 +29,21 @@ class App {
         
         this.setCommands()
         this.client.on(Events.InteractionCreate, (interaction:  Interaction<CacheType>) => {
-            console.log(interaction)
         })
         
     }
 
     private setCommands = async () => {
-
-         
-
-        const foldersPath = path.join(__dirname, '..', 'src', 'commands');
-        const commandFolders = fs.readdirSync(foldersPath);
-
-        for (const folder of commandFolders) {
-            const commandsPath = path.join(foldersPath, folder);
-            const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.ts'));
-            for (const file of commandFiles) {
-                const filePath = path.join(commandsPath, file);
-                // does not work on this require
-                const commandModule = await import(filePath);
-                const command = commandModule as unknown as Command;
-        //         // Set a new item in the Collection with the key as the command name and the value as the exported module
+         Object
+            .values(Commands)
+            .map(commandModule => commandModule.default)
+            .forEach(command => {
                 if ('data' in command && 'execute' in command) {
                     this.client.commands.set(command.data.name, command);
                 } else {
-                    console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+                    console.log(`[WARNING] The command at is missing a required "data" or "execute" property.`);
                 }
-            }
-        }
+            })
     }
  }
 
