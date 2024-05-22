@@ -5,7 +5,6 @@ export default {
 		.setName('big')
 		.setDescription('Big chungus'),
 	async execute(interaction: CommandInteraction) {
-		console.log(interaction)
 		await interaction.reply(':big-chungs:')
 	}
 }
