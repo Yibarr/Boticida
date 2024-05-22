@@ -42,8 +42,8 @@ class App {
             for (const file of commandFiles) {
                 const filePath = path.join(commandsPath, file);
                 // does not work on this require
-                console.log(filePath)
-                const command: Command = await import ('./commands/utility/chungus') as Command
+                const commandModule = await import(filePath);
+                const command = commandModule as unknown as Command;
         //         // Set a new item in the Collection with the key as the command name and the value as the exported module
                 if ('data' in command && 'execute' in command) {
                     this.client.commands.set(command.data.name, command);
