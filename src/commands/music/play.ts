@@ -2,10 +2,9 @@ import { SlashCommandBuilder, CommandInteraction } from 'discord.js'
 
 export default {
 	data: new SlashCommandBuilder()
-		.setName('big')
-		.setDescription('Big chungus'),
+		.setName('play')
+		.setDescription('Play song'),
 	async execute(interaction: CommandInteraction) {
-		console.log(interaction)
-		await interaction.reply(':big-chungs:')
+		await interaction.reply(':play:')
 	}
 }

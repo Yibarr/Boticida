@@ -1,5 +1,5 @@
 import Bot from  './Bot'
-import settings from './config'
+import settings from './settings'
 
 const bot = new Bot(settings)
 

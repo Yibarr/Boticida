@@ -37,14 +37,18 @@ npm start
 
 To avoid manual restarting of the build and discord bot process, yu can use the following commands, make sure to run each of them in two different terminal processes.
 First run the command `watch:build` to restart the build each time you made a change inside the `/src` directory
-```
+```shell
 npm run watch:build
 ```
 
 In another window fo your terminal run the command `dev`
-```
+```shell
 npm run dev
 ```
 
 Now you can start developing reducing manual restarts of the project
 
+For deploying new commands or updating description, names, etc
+```shell
+npm run deploy:commands
+```

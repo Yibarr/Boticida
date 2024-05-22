@@ -24,7 +24,12 @@ class Bot {
         this.initialize()
         this.setCommands()
         this.client.on(Events.InteractionCreate, interaction => {
-            console.log(interaction)
+            if (interaction.isCommand()) {
+                const command = this.client.commands.get(interaction.commandName);
+                if (command) {
+                    command.execute(interaction);
+                }
+            }
         })
         
     }

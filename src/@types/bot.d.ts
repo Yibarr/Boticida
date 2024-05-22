@@ -1,4 +1,4 @@
-export type BotModule<T> = {
+export type BotModules<T> = {
     default: T
 }
 
