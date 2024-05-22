@@ -13,8 +13,12 @@ npm install
 2. You'll need to create a token and add it to a server as described in [Discord Developer Portal Docs](https://discord.com/developers/docs/quick-start/getting-started#step-1-creating-an-app) 
 
 3. Create a file at the project root with the name `.env` this will contain your discord app token as follows:
+    - Get the token and client id from [Discord developer portal](https://discord.com/developers/applications)
+    - Get the server id [Enabling develper mode](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID)
 ```
-DISCORD_TOKEN=<Your-Token-Here>
+DISCORD_TOKEN=<Your-token-here>
+CLIENT_ID=<Your-client-id-here>
+GUILD_ID=<Your-guild-id-here>
 ```
 
 4. Build webpack bundle

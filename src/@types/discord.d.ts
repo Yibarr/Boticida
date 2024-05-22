@@ -7,6 +7,6 @@ declare module "discord.js" {
 }
 
 export interface Command {
-    data: any,
-    execute: any // Define the execute function's signature
+    data: SlashCommandBuilder,
+    execute: (interaction: CommandInteraction) => void
 }

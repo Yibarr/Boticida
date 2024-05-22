@@ -1,6 +1,6 @@
-import App from  './App'
-import config from './config'
+import Bot from  './Bot'
+import settings from './config'
 
-const app = new App(config.token)
+const bot = new Bot(settings)
 
-app.start()
+bot.start()
