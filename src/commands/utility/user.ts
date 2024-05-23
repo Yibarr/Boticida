@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, CommandInteraction } from 'discord.js'
+import { CommandHandler } from '../../@types/discord';
 
-export default {
+const user: CommandHandler = {
 	data: new SlashCommandBuilder()
 		.setName('user')
 		.setDescription('Provides information about the user.'),
@@ -10,3 +11,5 @@ export default {
 		await interaction.reply(`This command was run by ${interaction.user.username}, who joined on ${/* interaction.member.joinedAt */1}.`);
 	}
 }
+
+export default user

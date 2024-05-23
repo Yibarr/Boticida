@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, CommandInteraction } from 'discord.js'
+import { CommandHandler } from '../../@types/discord';
 
-export default {
+const server: CommandHandler = {
 	data: new SlashCommandBuilder()
 		.setName('server')
 		.setDescription('Provides information about the server.'),
@@ -10,3 +11,5 @@ export default {
 		await interaction.reply(`This server is ${interaction.guild.name} and has ${interaction.guild.memberCount} members.`);
 	}
 }
+
+export default server
