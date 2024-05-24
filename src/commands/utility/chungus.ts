@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, CommandInteraction } from 'discord.js'
+import { CommandHandler } from '../../@types/discord'
 
-export default {
+const big: CommandHandler = {
 	data: new SlashCommandBuilder()
 		.setName('big')
 		.setDescription('Big chungus'),
@@ -8,3 +9,5 @@ export default {
 		await interaction.reply(':big-chungs:')
 	}
 }
+
+export default big

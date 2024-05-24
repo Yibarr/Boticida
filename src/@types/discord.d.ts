@@ -1,4 +1,9 @@
-import { Collection, SlashCommandBuilder, CommandInteraction } from "discord.js";
+import {
+  Collection,
+  SlashCommandBuilder,
+  CommandInteraction,
+  ClientEvents
+} from "discord.js";
 
 declare module "discord.js" {
   export interface Client {
@@ -6,7 +11,12 @@ declare module "discord.js" {
   }
 }
 
-export interface Command {
+export interface CommandHandler {
     data: SlashCommandBuilder,
     execute: (interaction: CommandInteraction) => void
+}
+export interface EventHandler {
+  name: keyof ClientEvents,
+  once?: boolean,
+  execute: (...args: any[]) => void
 }

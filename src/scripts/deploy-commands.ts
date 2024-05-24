@@ -1,12 +1,12 @@
 import { REST, Routes } from 'discord.js';
-import { Command } from 'discord'
+import { CommandHandler } from 'discord'
 import { processModules } from '../utils'
 import settings from '../settings'
 import commands from '../commands'
 
 const commandsTemp: any[] = []
 
-processModules(commands, (command: Command) => {
+processModules(commands, (command: CommandHandler) => {
     if ('data' in command && 'execute' in command) {
         commandsTemp.push(command.data.toJSON())
     } else {
@@ -14,11 +14,8 @@ processModules(commands, (command: Command) => {
     }
 })
 
-
-// Construct and prepare an instance of the REST module
 const rest = new REST().setToken(settings.token);
 
-// Deploy your commands
 (async () => {
     try {
         console.log(`Started refreshing ${commandsTemp.length} application (/) commands.`);
@@ -27,11 +24,10 @@ const rest = new REST().setToken(settings.token);
         const data = await rest.put(
             Routes.applicationGuildCommands(settings.clientID, settings.guildID),
             { body: commandsTemp },
-        );
+        )
 
         console.log("Successfully reloaded application (/) commands.", data);
     } catch (error) {
-        // And of course, make sure you catch and log any errors!
         console.error(error);
     }
 })()
