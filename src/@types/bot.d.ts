@@ -7,5 +7,6 @@ export type Settings = {
     clientID: string,
     guildID: string,
     spotifyClientID: string,
-    spotifyClientSecret: string
+    spotifyClientSecret: string,
+    youtubeApiKey: string
 } 

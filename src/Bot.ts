@@ -52,8 +52,8 @@ class Bot {
     }
 
     private setPlayerEvents = async () => {
-        const player = await createPlayer(this.client, this.settings);
-        await player?.extractors.loadDefault((ext) => ext !== 'YouTubeExtractor');
+        const player = await createPlayer(this.client, this.settings)
+        await player?.extractors.loadDefault((ext) => ext !== 'YouTubeExtractor')
 
         processModules(playerEvents, (event: PlayerEventHandler) => {
             player?.events.on(event.name as keyof GuildQueueEvents, (queue: any, ...args: any[]) => event.execute(queue, ...args))

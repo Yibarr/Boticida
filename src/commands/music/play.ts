@@ -30,7 +30,7 @@ const play: CommandHandler = {
                     .setTitle(`Song added to the queue`)
                     .setDescription(
                         `
-                        **[${track.title}](${track.url})** by ${track.author}
+                        **[${track.description}](${track.url})**
                         `)
                     .setThumbnail(track.thumbnail)
 

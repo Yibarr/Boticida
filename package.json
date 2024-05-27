@@ -16,14 +16,19 @@
     "@discordjs/opus": "^0.9.0",
     "@discordjs/voice": "^0.17.0",
     "@web-scrobbler/metadata-filter": "^3.1.0",
+    "axios": "^1.7.2",
     "discord-player": "^6.6.9",
-    "discord.js": "^14.15.2"
+    "discord.js": "^14.15.2",
+    "mediaplex": "^0.0.9",
+    "spotify-web-api-node": "^5.0.2",
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
+    "@types/spotify-api": "^0.0.25",
+    "@types/spotify-web-api-node": "^5.0.11",
     "@types/ws": "^8.5.10",
     "dotenv": "^16.4.5",
-    "node-loader": "^2.0.0",
     "nodemon": "^3.1.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"

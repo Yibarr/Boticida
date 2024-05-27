@@ -8,7 +8,7 @@ const playerStart: PlayerEventHandler = {
             .setTitle('Now playing:')
             .setDescription(
                 `
-                **[${track.title}](${track.url})** by ${track.author}
+                **[${track.description}](${track.url})**
                 Duration: ${track.duration}
                 Queue: ${queue.size}
                 `
@@ -17,17 +17,17 @@ const playerStart: PlayerEventHandler = {
 
         const playButton = new ButtonBuilder()
             .setCustomId('play')
-            .setLabel('Play') // Play/Pause character
+            .setLabel('Play')
             .setStyle(ButtonStyle.Primary)
 
         const skipButton = new ButtonBuilder()
             .setCustomId('skip')
-            .setLabel('Skip') // Skip character
+            .setLabel('Skip')
             .setStyle(ButtonStyle.Secondary)
 
         const pauseButton = new ButtonBuilder()
             .setCustomId('pause')
-            .setLabel('Pause') // Pause character
+            .setLabel('Pause')
             .setStyle(ButtonStyle.Primary)
 
         const row = new ActionRowBuilder<ButtonBuilder>()
