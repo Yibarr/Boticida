@@ -14,9 +14,9 @@ processModules(commands, (command: CommandHandler) => {
     }
 })
 
-const rest = new REST().setToken(settings.token);
+const rest = new REST().setToken(settings.token)
 
-(async () => {
+const deploy = async () => {
     try {
         console.log(`Started refreshing ${commandsTemp.length} application (/) commands.`)
 
@@ -30,4 +30,6 @@ const rest = new REST().setToken(settings.token);
     } catch (error) {
         console.error(error)
     }
-})()
+}
+
+deploy()
