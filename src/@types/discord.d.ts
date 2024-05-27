@@ -2,7 +2,8 @@ import {
   Collection,
   SlashCommandBuilder,
   CommandInteraction,
-  ClientEvents
+  ClientEvents,
+  BaseGuildTextChannel
 } from "discord.js"
 
 declare module "discord.js" {
@@ -19,4 +20,15 @@ export interface EventHandler {
   name: keyof ClientEvents,
   once?: boolean,
   execute: (...args: any[]) => void
+}
+
+export type ExecuteArgument = Track | Error | undefined
+
+export interface PlayerEventHandler {
+  name: keyof GuildQueueEvents,
+  execute: (queue: GuildQueue<QueueMetadata>, arg?: ExecuteArgument) => unknown
+}
+
+export interface QueueMetadata {
+    channel: BaseGuildTextChannel
 }
