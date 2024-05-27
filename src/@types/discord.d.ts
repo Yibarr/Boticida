@@ -3,7 +3,7 @@ import {
   SlashCommandBuilder,
   CommandInteraction,
   ClientEvents
-} from "discord.js";
+} from "discord.js"
 
 declare module "discord.js" {
   export interface Client {

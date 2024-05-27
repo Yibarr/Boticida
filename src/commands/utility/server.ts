@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, CommandInteraction } from 'discord.js'
-import { CommandHandler } from '../../@types/discord';
+import { CommandHandler } from '../../@types/discord'
 
 const server: CommandHandler = {
 	data: new SlashCommandBuilder()
@@ -8,7 +8,7 @@ const server: CommandHandler = {
 	async execute(interaction: CommandInteraction) {
         // @ts-ignore: Object is possibly 'null'.
 		// interaction.guild is the object representing the Guild in which the command was run
-		await interaction.reply(`This server is ${interaction.guild.name} and has ${interaction.guild.memberCount} members.`);
+		await interaction.reply(`This server is ${interaction.guild.name} and has ${interaction.guild.memberCount} members.`)
 	}
 }
 

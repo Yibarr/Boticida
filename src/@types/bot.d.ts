@@ -5,5 +5,7 @@ export type BotModules<T> = {
 export type Settings = {
     token: string,
     clientID: string,
-    guildID: string
+    guildID: string,
+    spotifyClientID: string,
+    spotifyClientSecret: string
 } 
