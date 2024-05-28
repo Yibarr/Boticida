@@ -33,14 +33,14 @@ const playerStart: PlayerEventHandler = {
         const row = new ActionRowBuilder<ButtonBuilder>()
             .addComponents(pauseButton, skipButton)
 
-        const response = await queue.metadata.channel.send({
-            embeds: [embed],
-            components: [row]
-        })
-
-        const filter = (i: any) => ['play', 'pause', 'skip'].includes(i.customId)
-
         try {
+            const response = await queue.metadata.channel.send({
+                embeds: [embed],
+                components: [row]
+            })
+
+            const filter = (i: any) => ['play', 'pause', 'skip'].includes(i.customId)
+
             const collector = response.createMessageComponentCollector({ filter })
 
             collector.on('collect', async (i: any) => {
@@ -69,7 +69,8 @@ const playerStart: PlayerEventHandler = {
             })
 
         } catch (e) {
-            console.log(e)
+            queue.metadata.channel.send(`Something went wrong playing: ${track.description}`)
+            console.log(`Something went wrong playing ${track.description}: ${e}`)
         }
     }
 }

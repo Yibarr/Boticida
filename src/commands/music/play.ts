@@ -12,15 +12,14 @@ const play: CommandHandler = {
                 .setRequired(true)
         ) as SlashCommandBuilder,
     async execute(interaction: CommandInteraction) {
-        const player = useMainPlayer()
-        const channel = (interaction.member as GuildMember)?.voice.channel
-        if (!channel) return interaction.reply('You are not connected to a voice channel.')
-
-        const query = interaction.options.get('query', true)?.value as string
-
-        await interaction.deferReply()
-
         try {
+            const player = useMainPlayer()
+            const channel = (interaction.member as GuildMember)?.voice.channel
+            if (!channel) return interaction.reply('You are not connected to a voice channel.')
+
+            const query = interaction.options.get('query', true)?.value as string
+        
+            await interaction.deferReply()
             const { track } = await player.play(channel, query, {
                 nodeOptions: {
                     metadata: interaction 
@@ -38,7 +37,14 @@ const play: CommandHandler = {
                 embeds: [embed]
             })
         } catch (e) {
-            return interaction.followUp(`Something went wrong: ${e}`)
+            console.log(`Something went wrong: ${e}`)
+            const command = interaction.client.commands.get(interaction.commandName)
+            if(!command) {
+                return interaction.followUp('Something went wrong, please try again later.')
+            } else {
+                console.log(`Something went wrong: ${e}`)
+                return interaction.followUp(`Something went wrong with ${command.name}, please try again later.`)
+            }
         }
     }
 }

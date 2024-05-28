@@ -12,7 +12,7 @@ import events from './events/utility'
 import playerEvents from './events/player'
 import { GuildQueueEvents } from 'discord-player'
 
-class Bot {
+class App {
     private client: Client
     private settings: Settings
 
@@ -33,12 +33,16 @@ class Bot {
             await this.setPlayerEvents()
             await this.initialize()
         } catch (error) {
-            console.log('start', error)
+            console.log('Something went wrong on start:', error)
         }
     }
 
-    private initialize = () => {
-        this.client.login(this.settings.token)        
+    private initialize = async () => {
+        try {
+            await this.client.login(this.settings.token)        
+        } catch (error) {
+            console.log('Something went wrong on initialize:', error)
+        }
     }
 
     private setEvents = () => {
@@ -67,10 +71,10 @@ class Bot {
             if ('data' in command && 'execute' in command) {
                 this.client.commands.set(command.data.name, command)
             } else {
-                console.log(`[WARNING] The command at is missing a required "data" or "execute" property.`)
+                console.log(`The command at is missing a required "data" or "execute" property.`)
             }
         })
     }
  }
 
-export default Bot
+export default App

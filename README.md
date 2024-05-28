@@ -16,12 +16,14 @@ npm install
     - Get the token and client id from [Discord developer portal](https://discord.com/developers/applications)
     - Get the server id [Enabling develper mode](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID)
     - Get the client id and client secre from spotify as instructed in [Spotify for developers](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
+    - Get YouTube API Key as told in [YouTube API Docs](https://developers.google.com/youtube/v3/getting-started?hl=es-419)
 ```
 DISCORD_TOKEN=<Your-token-here>
 CLIENT_ID=<Your-client-id-here>
 GUILD_ID=<Your-guild-id-here>
 SPOTIFY_CLIENT_ID=<Your-spotify-client-id-here>
 SPOTIFY_CLIENT_SECRET=<Your-spotify-secret-here>
+YOUTUBE_API_KEY=<Your-youtube-api-key>
 ```
 
 4. Initialize discord bot
