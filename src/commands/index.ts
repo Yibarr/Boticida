@@ -3,5 +3,5 @@ import * as skip from './music/skip'
 
 export default {
     play,
-    skip
+    skip,
 }

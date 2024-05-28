@@ -1,3 +1,4 @@
+
 export type BotModules<T> = {
     default: T
 }
@@ -10,3 +11,10 @@ export type Settings = {
     spotifyClientSecret: string,
     youtubeApiKey: string
 } 
+
+type Modes = {
+    [key: string]: {
+        name: string,
+        url: string
+    };
+  };
