@@ -30,8 +30,13 @@ const playerStart: PlayerEventHandler = {
             .setLabel('Pause')
             .setStyle(ButtonStyle.Primary)
 
+        const stopButton = new ButtonBuilder()
+            .setCustomId('stop')
+            .setLabel('Stop')
+            .setStyle(ButtonStyle.Danger)
+
         const row = new ActionRowBuilder<ButtonBuilder>()
-            .addComponents(pauseButton, skipButton)
+            .addComponents(pauseButton, skipButton, stopButton)
 
         try {
             const response = await queue.metadata.channel.send({
@@ -39,7 +44,7 @@ const playerStart: PlayerEventHandler = {
                 components: [row]
             })
 
-            const filter = (i: any) => ['play', 'pause', 'skip'].includes(i.customId)
+            const filter = (i: any) => ['play', 'pause', 'skip', 'stop'].includes(i.customId)
 
             const collector = response.createMessageComponentCollector({ filter })
 
@@ -47,16 +52,20 @@ const playerStart: PlayerEventHandler = {
                 if (i.customId === 'play') {
                     queue.node.setPaused(false)
                     await i.update({
-                        components: [new ActionRowBuilder<ButtonBuilder>().addComponents(pauseButton, skipButton)]
+                        components: [new ActionRowBuilder<ButtonBuilder>().addComponents(pauseButton, skipButton, stopButton)]
                     })
                 } else if (i.customId === 'pause') {
                     queue.node.setPaused(true)
                     await i.update({
-                        components: [new ActionRowBuilder<ButtonBuilder>().addComponents(playButton, skipButton)]
+                        components: [new ActionRowBuilder<ButtonBuilder>().addComponents(playButton, skipButton, stopButton)]
                     })
                 } else if (i.customId === 'skip') {
                     queue.node.skip()
                     await i.update({ content: `Skipped track: **${track.title}**`, components: [] })
+                    collector.stop()
+                } else if(i.customId === 'stop') {
+                    queue.node.stop()
+                    await i.update({ content: 'Stopped the player', components: [] })
                     collector.stop()
                 }
             })
