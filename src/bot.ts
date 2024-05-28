@@ -12,7 +12,7 @@ import events from './events/utility'
 import playerEvents from './events/player'
 import { GuildQueueEvents } from 'discord-player'
 
-class App {
+class Bot {
     private client: Client
     private settings: Settings
 
@@ -77,4 +77,4 @@ class App {
     }
  }
 
-export default App
+export default Bot
