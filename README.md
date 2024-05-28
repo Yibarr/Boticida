@@ -15,19 +15,18 @@ npm install
 3. Create a file at the project root with the name `.env` this will contain your discord app token as follows:
     - Get the token and client id from [Discord developer portal](https://discord.com/developers/applications)
     - Get the server id [Enabling develper mode](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID)
+    - Get the client id and client secre from spotify as instructed in [Spotify for developers](https://developer.spotify.com/documentation/web-api/tutorials/getting-started)
+    - Get YouTube API Key as told in [YouTube API Docs](https://developers.google.com/youtube/v3/getting-started?hl=es-419)
 ```
 DISCORD_TOKEN=<Your-token-here>
 CLIENT_ID=<Your-client-id-here>
 GUILD_ID=<Your-guild-id-here>
+SPOTIFY_CLIENT_ID=<Your-spotify-client-id-here>
+SPOTIFY_CLIENT_SECRET=<Your-spotify-secret-here>
+YOUTUBE_API_KEY=<Your-youtube-api-key>
 ```
 
-4. Build webpack bundle
-
-```shell
-npm run build
-```
-
-5. Initialize discord bot
+4. Initialize discord bot
 
 ```shell
 npm start
@@ -35,20 +34,18 @@ npm start
 
 ### Development
 
-To avoid manual restarting of the build and discord bot process, yu can use the following commands, make sure to run each of them in two different terminal processes.
-First run the command `watch:build` to restart the build each time you made a change inside the `/src` directory
-```shell
-npm run watch:build
-```
+To avoid manual restarting discord bot process
 
 In another window fo your terminal run the command `dev`
 ```shell
 npm run dev
 ```
 
-Now you can start developing reducing manual restarts of the project
-
 For deploying new commands or updating description, names, etc
 ```shell
 npm run deploy:commands
 ```
+
+### Instructions
+
+You can play a song using the `/play` command and skip the song using the `/skip` command once you deployed the commands.

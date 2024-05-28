@@ -2,33 +2,35 @@
   "name": "boticida",
   "version": "0.0.1",
   "description": "Discord bot",
-  "main": "index.js",
+  "main": "/src/index.ts",
   "scripts": {
-    "build": "webpack",
-    "start": "node dist/bundle.js",
-    "dev": "nodemon dist/bundle.js",
-    "watch:build": "webpack --watch",
+    "start": "ts-node ./src/index.ts",
+    "dev": "nodemon ./src/index.ts",
     "deploy:commands": "ts-node ./src/scripts/deploy-commands.ts"
   },
   "author": "Yael Ibarra",
   "license": "GPL-3.0",
   "dependencies": {
-    "bufferutil": "^4.0.8",
+    "@discord-player/equalizer": "^0.2.3",
+    "@discord-player/extractor": "^4.4.7",
+    "@discordjs/opus": "^0.9.0",
+    "@discordjs/voice": "^0.17.0",
+    "@web-scrobbler/metadata-filter": "^3.1.0",
+    "axios": "^1.7.2",
+    "discord-player": "^6.6.9",
     "discord.js": "^14.15.2",
-    "utf-8-validate": "^6.0.4",
-    "zlib-sync": "^0.1.9"
+    "mediaplex": "^0.0.9",
+    "spotify-web-api-node": "^5.0.2",
+    "ytdl-core": "^4.11.5"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
+    "@types/spotify-api": "^0.0.25",
+    "@types/spotify-web-api-node": "^5.0.11",
     "@types/ws": "^8.5.10",
-    "clean-webpack-plugin": "^4.0.0",
     "dotenv": "^16.4.5",
-    "node-loader": "^2.0.0",
     "nodemon": "^3.1.0",
-    "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
-    "typescript": "^5.4.5",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4"
+    "typescript": "^5.4.5"
   }
 }
