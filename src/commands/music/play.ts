@@ -2,7 +2,6 @@
 import { SlashCommandBuilder, CommandInteraction, GuildMember, EmbedBuilder } from 'discord.js'
 import { CommandHandler } from '../../@types/discord'
 import { useMainPlayer } from 'discord-player'
-import { modesList } from '../../settings'
 
 const play: CommandHandler = {
     data: new SlashCommandBuilder()
@@ -11,16 +10,7 @@ const play: CommandHandler = {
         .addStringOption(option =>
             option.setName('query')
                 .setDescription('The song you want to play')
-                .setRequired(false)
-        )
-        .addStringOption(option =>
-            option.setName('mode')
-                .setDescription('Mode activated!')
-                .setRequired(false)
-                .addChoices(Object.keys(modesList).map(mode => ({
-                    name: modesList[mode].name,
-                    value: mode
-                })))
+                .setRequired(true)
         ) as SlashCommandBuilder,
     async execute(interaction: CommandInteraction) {
         try {
@@ -28,19 +18,16 @@ const play: CommandHandler = {
             const channel = (interaction.member as GuildMember)?.voice.channel
             if (!channel) return interaction.reply('You are not connected to a voice channel.')
 
-            const query = interaction.options.get('query')?.value as string
-            const mode = interaction.options.get('mode')?.value as string
-            const url = mode ? modesList[mode]?.url : query
-            const title = mode ? modesList[mode]?.name : 'Song added to the queue'
+            const query = interaction.options.get('query', true)?.value as string
         
             await interaction.deferReply()
-            const { track } = await player.play(channel, url, {
+            const { track } = await player.play(channel, query, {
                 nodeOptions: {
                     metadata: interaction 
                 }
             })
             const embed = new EmbedBuilder()
-                    .setTitle(`${title}`)
+                    .setTitle("Song added to the queue")
                     .setDescription(
                         `
                         **[${track.description}](${track.url})**

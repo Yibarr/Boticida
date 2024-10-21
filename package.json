@@ -18,10 +18,10 @@
     "@web-scrobbler/metadata-filter": "^3.1.0",
     "axios": "^1.7.2",
     "discord-player": "^6.6.9",
+    "discord-player-youtubei": "^1.2.6",
     "discord.js": "^14.15.2",
     "mediaplex": "^0.0.9",
-    "spotify-web-api-node": "^5.0.2",
-    "ytdl-core": "^4.11.5"
+    "spotify-web-api-node": "^5.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.12.12",
