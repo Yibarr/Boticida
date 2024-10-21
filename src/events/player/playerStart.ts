@@ -1,9 +1,11 @@
 import { ButtonBuilder, ActionRowBuilder, EmbedBuilder, ButtonStyle } from 'discord.js'
 import { GuildQueue, Track, GuildQueueEvents } from 'discord-player'
 import { PlayerEventHandler, QueueMetadata } from 'discord'
+import { timeStamp } from 'console'
 const playerStart: PlayerEventHandler = {
     name: 'playerStart' as keyof GuildQueueEvents,
     execute: async (queue: GuildQueue<QueueMetadata>, track: Track) => {
+        console.log(`Now playing: ${ track.description } requested by ${ track.requestedBy || "Unknown" } at ${ timeStamp() }`)
         const embed = new EmbedBuilder()
             .setTitle('Now playing:')
             .setDescription(
@@ -44,37 +46,39 @@ const playerStart: PlayerEventHandler = {
                 components: [row]
             })
 
-            const filter = (i: any) => ['play', 'pause', 'skip', 'stop'].includes(i.customId)
+            const filter = (interaction: any) => ['play', 'pause', 'skip', 'stop'].includes(interaction.customId)
 
             const collector = response.createMessageComponentCollector({ filter })
 
-            collector.on('collect', async (i: any) => {
-                if (i.customId === 'play') {
+            collector.on('collect', async (interaction: any) => {
+                if (interaction.customId === 'play') {
                     queue.node.setPaused(false)
-                    await i.update({
+                    await interaction.update({
                         components: [new ActionRowBuilder<ButtonBuilder>().addComponents(pauseButton, skipButton, stopButton)]
                     })
-                } else if (i.customId === 'pause') {
+                } else if (interaction.customId === 'pause') {
                     queue.node.setPaused(true)
-                    await i.update({
+                    await interaction.update({
                         components: [new ActionRowBuilder<ButtonBuilder>().addComponents(playButton, skipButton, stopButton)]
                     })
-                } else if (i.customId === 'skip') {
+                } else if (interaction.customId === 'skip') {
                     queue.node.skip()
-                    await i.update({ content: `Skipped track: **${track.title}**`, components: [] })
+                    await interaction.update({ content: `Skipped track: **${track.title}**`, components: [] })
                     collector.stop()
-                } else if(i.customId === 'stop') {
+                } else if(interaction.customId === 'stop') {
                     queue.node.stop()
-                    await i.update({ content: 'Stopped the player', components: [] })
+                    await interaction.update({ content: 'Stopped the player', components: [] })
                     collector.stop()
                 }
             })
 
             collector.on('end', async (_: any) => {
                 await response.edit({
-                    components: [new ActionRowBuilder<ButtonBuilder>()
-                        .addComponents(playButton.setDisabled(true), skipButton.setDisabled(true))]
-                })
+                    components: [
+                        new ActionRowBuilder<ButtonBuilder>()
+                            .addComponents(playButton.setDisabled(true), skipButton.setDisabled(true)),
+                    ],
+                });
             })
 
         } catch (e) {

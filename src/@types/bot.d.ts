@@ -10,11 +10,4 @@ export type Settings = {
     spotifyClientID: string,
     spotifyClientSecret: string,
     youtubeApiKey: string
-} 
-
-type Modes = {
-    [key: string]: {
-        name: string,
-        url: string
-    };
-  };
+}
